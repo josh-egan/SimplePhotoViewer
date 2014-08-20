@@ -70,11 +70,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusinessModule.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="FileDialogWrapper.cs" />
+    <Compile Include="UIModule.cs" />
     <Compile Include="UI\CaliburnCustomizations.cs" />
     <Compile Include="UI\ViewModels\ShellViewModel.cs" />
     <Compile Include="UI\Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\WindowStateHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppBootstrapper.cs" />
@@ -119,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\DefaultStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Manifest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

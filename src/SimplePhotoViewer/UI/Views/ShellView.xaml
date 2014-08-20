@@ -17,11 +17,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Button Name="Minimize">
                 <Path Data="M 0,10 L 10,10" Style="{StaticResource WindowControl}" />
             </Button>
-            <Button Name="RestoreDown">
+            <Button Name="Normal">
                 <Path Data="M 0,10 L 7,10 L 7,3 L 0,3 L 0,10 M 3,3 L 3,0 L 10,0 L 10,7 L 7,7"
                       Style="{StaticResource WindowControl}" />
             </Button>

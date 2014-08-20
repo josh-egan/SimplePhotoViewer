@@ -50,9 +50,9 @@ namespace SimplePhotoViewer.UI
             if (dependencyPropertyName.Equals("Visibility")) return UIElement.VisibilityProperty;
             if (dependencyPropertyName.Equals("IsEnabled")) return UIElement.IsEnabledProperty;
 
-            throw new NotSupportedException("Support for the property " + dependencyPropertyName +
-                                            " has not been added. " +
-                                            "Please correct bad spelling or add support for this dependency property.");
+            var message = "Support for the property " + dependencyPropertyName + " has not been added. " +
+                          "Please correct bad spelling or add support for this dependency property.";
+            throw new NotSupportedException(message);
         }
     }
 }

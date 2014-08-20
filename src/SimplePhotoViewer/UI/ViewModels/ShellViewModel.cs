@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
 using Caliburn.Micro;
+using Ninject;
 
 namespace SimplePhotoViewer.UI.ViewModels
 {
@@ -9,16 +10,15 @@ namespace SimplePhotoViewer.UI.ViewModels
     [Export(typeof (IShellViewModel))]
     public sealed class ShellViewModel : Screen, IShellViewModel
     {
-        private readonly Application application;
+        private readonly IWindowStateHelper windowStateHelper;
 
         private Visibility maximizeVisibility;
         private Visibility restoreDownVisibility;
 
-        public ShellViewModel() : this(Application.Current){}
-
-        public ShellViewModel(Application application)
+        [Inject]
+        public ShellViewModel(IWindowStateHelper windowStateHelper)
         {
-            this.application = application;
+            this.windowStateHelper = windowStateHelper;
 
             DisplayName = "Simple Photo Viewer";
         }
@@ -33,29 +33,29 @@ namespace SimplePhotoViewer.UI.ViewModels
             }
         }
 
-        public Visibility RestoreDownVisibility
+        public Visibility NormalVisibility
         {
             get { return restoreDownVisibility; }
             set
             {
                 restoreDownVisibility = value;
-                NotifyOfPropertyChange(() => RestoreDownVisibility);
+                NotifyOfPropertyChange(() => NormalVisibility);
             }
         }
 
         public void Minimize()
         {
-            application.MainWindow.WindowState = WindowState.Minimized;
+            windowStateHelper.WindowState = WindowState.Minimized;
         }
 
-        public void RestoreDown()
+        public void Normal()
         {
-            application.MainWindow.WindowState = WindowState.Normal;
+            windowStateHelper.WindowState = WindowState.Normal;
         }
 
         public void Maximize()
         {
-            application.MainWindow.WindowState = WindowState.Maximized;
+            windowStateHelper.WindowState = WindowState.Maximized;
         }
 
         public void Exit()
@@ -65,15 +65,15 @@ namespace SimplePhotoViewer.UI.ViewModels
 
         public void UpdateWindowControlVisibilities()
         {
-            if (application.MainWindow.WindowState == WindowState.Maximized)
+            if (windowStateHelper.WindowState == WindowState.Maximized)
             {
                 MaximizeVisibility = Visibility.Collapsed;
-                RestoreDownVisibility = Visibility.Visible;
+                NormalVisibility = Visibility.Visible;
             }
             else
             {
                 MaximizeVisibility = Visibility.Visible;
-                RestoreDownVisibility = Visibility.Collapsed;
+                NormalVisibility = Visibility.Collapsed;
             }
         }
     }
