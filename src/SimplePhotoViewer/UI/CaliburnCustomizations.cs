@@ -35,9 +35,8 @@ namespace SimplePhotoViewer.UI
                 var parts = trimmed.Split(new[] {'_'}, StringSplitOptions.RemoveEmptyEntries);
                 var baseElementName = parts[0];
 
-                var matchingProperties = properties.Where(p => p.Name.StartsWith(baseElementName)).ToArray();
-                if (matchingProperties.Length == 0)
-                    continue;
+                var matchingProperties = properties
+                    .Where(p => p.Name.StartsWith(baseElementName) && !p.Name.Equals(baseElementName));
 
                 foreach (var matchingProperty in matchingProperties)
                     ConventionManager.SetBinding(viewModelType, matchingProperty.Name, matchingProperty, element, null,
@@ -50,7 +49,7 @@ namespace SimplePhotoViewer.UI
             if (dependencyPropertyName.Equals("Visibility")) return UIElement.VisibilityProperty;
             if (dependencyPropertyName.Equals("IsEnabled")) return UIElement.IsEnabledProperty;
 
-            var message = "Support for the property " + dependencyPropertyName + " has not been added. " +
+            var message = "Support for the property '" + dependencyPropertyName + "' has not been added. " +
                           "Please correct bad spelling or add support for this dependency property.";
             throw new NotSupportedException(message);
         }

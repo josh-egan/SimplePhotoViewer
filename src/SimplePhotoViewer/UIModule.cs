@@ -10,8 +10,9 @@ namespace SimplePhotoViewer
         public override void Load()
         {
             Bind<IWindowManager>().To<WindowManager>();
-            Bind<IShellViewModel>().To<ShellViewModel>();
             Bind<IWindowStateHelper>().To<WindowStateHelper>();
+            Bind<IShellViewModel>().To<ShellViewModel>();
+            Bind<IImageViewModel>().To<ImageViewModel>();
         }
     }
 }

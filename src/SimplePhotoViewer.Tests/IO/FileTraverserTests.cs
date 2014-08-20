@@ -2,17 +2,13 @@
 using NUnit.Framework;
 using Rhino.Mocks;
 using SimplePhotoViewer.IO;
+using SimplePhotoViewer.Tests.TestFiles;
 
 namespace SimplePhotoViewer.Tests.IO
 {
     [TestFixture]
     public class FileTraverserTests
     {
-        private static readonly string JellyfishFilePath = Path.GetFullPath(@"TestFiles\Jellyfish.jpg");
-        private static readonly string KoalaFilePath = Path.GetFullPath(@"TestFiles\Koala.jpg");
-        private static readonly string LighthouseFilePath = Path.GetFullPath(@"TestFiles\Lighthouse.jpg");
-        private static readonly string TulipsFilePath = Path.GetFullPath(@"TestFiles\Tulips.jpg");
-
         private ICanSelectFile fileSelector;
         private FileTraverser fileTraverser;
 
@@ -27,11 +23,11 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void get_next_returns_next_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
 
-            Assert.AreEqual(LighthouseFilePath, fileTraverser.GetNextFile());
+            Assert.AreEqual(TestFile.LighthouseFilePath, fileTraverser.GetNextFile());
         }
 
         [Test]
@@ -43,22 +39,22 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void get_next_updates_current_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
             fileTraverser.GetNextFile();
 
-            Assert.AreEqual(LighthouseFilePath, fileTraverser.CurrentFile);
+            Assert.AreEqual(TestFile.LighthouseFilePath, fileTraverser.CurrentFile);
         }
 
         [Test]
         public void get_next_wraps_around_if_at_end_of_file_list()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TulipsFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.TulipsFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
 
-            Assert.AreEqual(JellyfishFilePath, fileTraverser.GetNextFile());
+            Assert.AreEqual(TestFile.JellyfishFilePath, fileTraverser.GetNextFile());
         }
 
         [Test]
@@ -70,32 +66,32 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void get_previous_returns_previous_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
 
-            Assert.AreEqual(JellyfishFilePath, fileTraverser.GetPreviousFile());
+            Assert.AreEqual(TestFile.JellyfishFilePath, fileTraverser.GetPreviousFile());
         }
 
         [Test]
         public void get_previous_updates_current_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
             fileTraverser.GetPreviousFile();
 
-            Assert.AreEqual(JellyfishFilePath, fileTraverser.CurrentFile);
+            Assert.AreEqual(TestFile.JellyfishFilePath, fileTraverser.CurrentFile);
         }
 
         [Test]
         public void get_previous_wraps_around_if_at_beginning_of_file_list()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(JellyfishFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.JellyfishFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
 
-            Assert.AreEqual(TulipsFilePath, fileTraverser.GetPreviousFile());
+            Assert.AreEqual(TestFile.TulipsFilePath, fileTraverser.GetPreviousFile());
         }
 
         [Test]
@@ -109,9 +105,9 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void select_file_returns_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
-            Assert.AreEqual(KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
+            Assert.AreEqual(TestFile.KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
         }
 
         [Test]
@@ -125,22 +121,22 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void select_file_returns_previous_file_if_null()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath).Repeat
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath).Repeat
                 .Once();
             fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(null).Repeat.Once();
 
-            Assert.AreEqual(KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
-            Assert.AreEqual(KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
+            Assert.AreEqual(TestFile.KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
+            Assert.AreEqual(TestFile.KoalaFilePath, fileTraverser.SelectFile(Constants.SupportedImageExtensions));
         }
 
         [Test]
         public void select_file_updates_current_file()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(KoalaFilePath);
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath);
 
             fileTraverser.SelectFile(Constants.SupportedImageExtensions);
 
-            Assert.AreEqual(KoalaFilePath, fileTraverser.CurrentFile);
+            Assert.AreEqual(TestFile.KoalaFilePath, fileTraverser.CurrentFile);
         }
 
     }

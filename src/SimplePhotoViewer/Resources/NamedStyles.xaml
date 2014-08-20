@@ -10,9 +10,14 @@
     
     <Style x:Key="Arrow" TargetType="Path">
         <Setter Property="Stroke" Value="DeepSkyBlue" />
-        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="StrokeThickness" Value="1" />
         <Setter Property="StrokeStartLineCap" Value="Square" />
         <Setter Property="StrokeEndLineCap" Value="Square" />
     </Style>
     
+    <Style x:Key="ButtonText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="DeepSkyBlue" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
 </ResourceDictionary>
