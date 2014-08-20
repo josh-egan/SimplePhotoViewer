@@ -72,7 +72,9 @@
     </Compile>
     <Compile Include="BusinessModule.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="FileDialogWrapper.cs" />
+    <Compile Include="IO\FileDialogWrapper.cs" />
+    <Compile Include="IO\FileTraverser.cs" />
+    <Compile Include="IO\ICanSelectFile.cs" />
     <Compile Include="UIModule.cs" />
     <Compile Include="UI\CaliburnCustomizations.cs" />
     <Compile Include="UI\ViewModels\ShellViewModel.cs" />

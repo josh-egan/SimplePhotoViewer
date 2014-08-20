@@ -1,7 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
+using SimplePhotoViewer.IO;
 
-namespace SimplePhotoViewer.Tests
+namespace SimplePhotoViewer.Tests.IO
 {
     [TestFixture]
     public class FileDialogWrapperTests

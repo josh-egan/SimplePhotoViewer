@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
 
-namespace SimplePhotoViewer
+namespace SimplePhotoViewer.IO
 {
-    public interface IFileDialogWrapper
-    {
-        string SelectFile(params string[] extensions);
-    }
-
-    public class FileDialogWrapper : IFileDialogWrapper
+    public class FileDialogWrapper : ICanSelectFile
     {
 
         public string SelectFile(params string[] extensions)
@@ -25,7 +17,7 @@ namespace SimplePhotoViewer
             };
             var result = dialog.ShowDialog();
 
-            if (result != null && (bool)result)
+            if (result != null && (bool) result)
                 return dialog.FileNames.First();
             return null;
         }
