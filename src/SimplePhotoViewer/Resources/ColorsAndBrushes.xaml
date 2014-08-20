@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <Color x:Key="TransparentWhiteColor" A="30" R="255" G="255" B="255"/>
+    <Color x:Key="TransparentWhiteColor" A="50" R="255" G="255" B="255"/>
     <Color x:Key="TranslucentWhiteColor" A="100" R="255" G="255" B="255"/>
     
 </ResourceDictionary>
