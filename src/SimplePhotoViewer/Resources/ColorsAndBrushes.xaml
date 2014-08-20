@@ -4,11 +4,4 @@
     <Color x:Key="TransparentWhiteColor" A="30" R="255" G="255" B="255"/>
     <Color x:Key="TranslucentWhiteColor" A="100" R="255" G="255" B="255"/>
     
-    <SolidColorBrush x:Key="TransparentWhite" Color="{StaticResource TransparentWhiteColor}"/>
-    <RadialGradientBrush x:Key="TransparentWhiteToTransparent">
-        <GradientStopCollection>
-            <GradientStop Color="{StaticResource TransparentWhiteColor}" Offset="0"/>
-            <GradientStop Color="Transparent" Offset="1"/>
-        </GradientStopCollection>
-    </RadialGradientBrush>
 </ResourceDictionary>

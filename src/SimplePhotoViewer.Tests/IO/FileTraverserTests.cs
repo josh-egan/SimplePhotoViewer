@@ -1,5 +1,4 @@
-﻿using System.IO;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Rhino.Mocks;
 using SimplePhotoViewer.IO;
 using SimplePhotoViewer.Tests.TestFiles;
@@ -121,7 +120,8 @@ namespace SimplePhotoViewer.Tests.IO
         [Test]
         public void select_file_returns_previous_file_if_null()
         {
-            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath).Repeat
+            fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(TestFile.KoalaFilePath)
+                .Repeat
                 .Once();
             fileSelector.Stub(f => f.SelectFile(Constants.SupportedImageExtensions)).Return(null).Repeat.Once();
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using NUnit.Framework;
 using Rhino.Mocks;
 using SimplePhotoViewer.UI;
@@ -68,6 +67,14 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
         }
 
         [Test]
+        public void update_window_control_visibilities_correctly_assigns_visibilities()
+        {
+            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Maximized, Visibility.Collapsed, Visibility.Visible);
+            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Normal, Visibility.Visible, Visibility.Collapsed);
+            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Minimized, Visibility.Visible, Visibility.Collapsed);
+        }
+
+        [Test]
         public void when_is_image_selected_changed_event_is_raised_visibility_is_updated()
         {
             Assert.AreEqual(Visibility.Hidden, shellViewModel.ReSelectFileVisibility);
@@ -77,14 +84,6 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
 
             imageViewModel.Raise(i => i.IsImageSelectedChanged += null, imageViewModel, false);
             Assert.AreEqual(Visibility.Hidden, shellViewModel.ReSelectFileVisibility);
-        }
-
-        [Test]
-        public void update_window_control_visibilities_correctly_assigns_visibilities()
-        {
-            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Maximized, Visibility.Collapsed, Visibility.Visible);
-            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Normal, Visibility.Visible, Visibility.Collapsed);
-            AssertThatVisibilitiesAreCorrectlyUpdated(WindowState.Minimized, Visibility.Visible, Visibility.Collapsed);
         }
 
         private void AssertThatVisibilitiesAreCorrectlyUpdated(WindowState windowState, Visibility expectedMaximize,

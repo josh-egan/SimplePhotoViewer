@@ -20,25 +20,31 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Name="ReSelectFile" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Name="ReSelectFile" Grid.Row="0" HorizontalAlignment="Left">
                 <TextBlock Text="Select New Image" Style="{StaticResource ButtonText}" />
             </Button>
+            
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="Minimize">
                     <Path Data="M 0,10 L 10,10" Style="{StaticResource WindowControl}" />
                 </Button>
+                
                 <Button Name="Normal">
                     <Path Data="M 0,10 L 7,10 L 7,3 L 0,3 L 0,10 M 3,3 L 3,0 L 10,0 L 10,7 L 7,7"
                           Style="{StaticResource WindowControl}" />
                 </Button>
+                
                 <Button Name="Maximize">
                     <Path Data="M 0,0 L 0,10 L 10,10 L 10,0 L 0,0" Style="{StaticResource WindowControl}" />
                 </Button>
+                
                 <Button Name="Exit">
                     <Path Data="M 0,0 L 10,10 M 0,10 L 10,0" Style="{StaticResource WindowControl}" />
                 </Button>
             </StackPanel>
+            
             <views:ImageView Grid.Row="1" cal:View.Model="{Binding ImageViewModel}"/>
+            
         </Grid>
     </Grid>
 </Window>
