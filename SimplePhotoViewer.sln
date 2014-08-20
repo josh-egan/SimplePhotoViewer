@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePhotoViewer", "src\SimplePhotoViewer\SimplePhotoViewer.csproj", "{1D79C363-8040-458F-A3F1-D63C4BDE11C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePhotoViewer.Tests", "src\SimplePhotoViewer.Tests\SimplePhotoViewer.Tests.csproj", "{848B1BFC-56F7-4E42-8820-8708454C0988}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D79C363-8040-458F-A3F1-D63C4BDE11C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D79C363-8040-458F-A3F1-D63C4BDE11C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D79C363-8040-458F-A3F1-D63C4BDE11C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D79C363-8040-458F-A3F1-D63C4BDE11C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{848B1BFC-56F7-4E42-8820-8708454C0988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{848B1BFC-56F7-4E42-8820-8708454C0988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{848B1BFC-56F7-4E42-8820-8708454C0988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{848B1BFC-56F7-4E42-8820-8708454C0988}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
