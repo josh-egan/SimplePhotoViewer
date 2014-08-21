@@ -154,7 +154,7 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
 //        }
 //
 //        [Test]
-//        public void _14_is_image_selected_changed_event_is_raised_when_image_is_loaded()
+//        public void _14_is_image_selected_changed_event_is_raised_when_image_is_selected()
 //        {
 //            var c = 0;
 //            imageViewModel.IsImageSelectedChanged += delegate { c++; };
