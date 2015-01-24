@@ -19,7 +19,6 @@ namespace SimplePhotoViewer.UI.ViewModels
         private Visibility reSelectFileVisibility;
         private Visibility restoreDownVisibility;
 
-        [Inject]
         public ShellViewModel(IWindowStateHelper windowStateHelper, IImageViewModel imageViewModel)
         {
             this.windowStateHelper = windowStateHelper;

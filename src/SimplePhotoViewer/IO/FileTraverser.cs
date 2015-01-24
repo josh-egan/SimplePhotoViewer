@@ -19,7 +19,6 @@ namespace SimplePhotoViewer.IO
         private int currentFileIndex;
         private string[] directoryFiles;
 
-        [Inject]
         public FileTraverser(ICanSelectFile fileSelector)
         {
             this.fileSelector = fileSelector;

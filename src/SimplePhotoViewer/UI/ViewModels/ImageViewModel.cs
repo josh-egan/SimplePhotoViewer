@@ -27,7 +27,6 @@ namespace SimplePhotoViewer.UI.ViewModels
         private Visibility previousVisibility;
         private Visibility selectFileVisibility;
 
-        [Inject]
         public ImageViewModel(IFileTraverser fileTraverser)
         {
             this.fileTraverser = fileTraverser;
