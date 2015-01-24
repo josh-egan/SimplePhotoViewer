@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
@@ -8,6 +10,11 @@ namespace SimplePhotoViewer.UI
 {
     public static class CaliburnCustomizations
     {
+        private static readonly Dictionary<string, DependencyProperty> CommonDependencyProperties = new Dictionary<string, DependencyProperty>
+        {
+            {GetMemberName(() => UIElement.IsEnabledProperty), UIElement.IsEnabledProperty}
+        };
+
         public static void AssignCustomBindingFunction()
         {
             var baseBindingFunction = ViewModelBinder.Bind;
@@ -40,18 +47,47 @@ namespace SimplePhotoViewer.UI
 
                 foreach (var matchingProperty in matchingProperties)
                     ConventionManager.SetBinding(viewModelType, matchingProperty.Name, matchingProperty, element, null,
-                        GetDependencyProperty(matchingProperty.Name.Remove(0, baseElementName.Length)));
+                        GetDependencyProperty(element, matchingProperty.Name.Remove(0, baseElementName.Length)));
             }
         }
 
-        private static DependencyProperty GetDependencyProperty(string dependencyPropertyName)
+        private static DependencyProperty GetDependencyProperty(FrameworkElement element, string dependencyPropertyName)
         {
-            if (dependencyPropertyName.Equals("Visibility")) return UIElement.VisibilityProperty;
-            if (dependencyPropertyName.Equals("IsEnabled")) return UIElement.IsEnabledProperty;
+            var fieldName = dependencyPropertyName + "Property";
 
-            var message = "Support for the property '" + dependencyPropertyName + "' has not been added. " +
-                          "Please correct bad spelling or add support for this dependency property.";
-            throw new NotSupportedException(message);
+            if (CommonDependencyProperties.ContainsKey(fieldName))
+                return CommonDependencyProperties[fieldName];
+            else
+            {
+                var dp = UseReflectionToFindDependencyProperty(element, fieldName);
+                CommonDependencyProperties.Add(fieldName, dp);
+                return dp;
+            }
+        }
+
+        private static DependencyProperty UseReflectionToFindDependencyProperty(FrameworkElement element, string fieldName)
+        {
+            var type = element.GetType();
+            FieldInfo fieldInfo = null;
+
+            do
+            {
+                fieldInfo = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
+                type = type.BaseType;
+            } while (fieldInfo == null && type != null);
+
+            if (fieldInfo == null)
+                throw new Exception("Could not find the the " + fieldName + " property on element of type " + element.GetType().Name);
+
+            return (DependencyProperty)fieldInfo.GetValue(element);
+        }
+
+        private static string GetMemberName<T>(Expression<Func<T>> expr)
+        {
+            var memberExpr = expr.Body as MemberExpression;
+            if (memberExpr == null)
+                throw new ArgumentException("Expression body must be a MemberExpression");
+            return memberExpr.Member.Name;
         }
     }
 }
