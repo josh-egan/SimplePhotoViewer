@@ -1,3 +1,5 @@
 *.pdb
+*.user
+*.suo
 bin/
 /**/obj/
