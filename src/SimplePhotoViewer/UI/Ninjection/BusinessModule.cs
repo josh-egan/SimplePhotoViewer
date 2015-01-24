@@ -1,7 +1,7 @@
 ﻿using Ninject.Modules;
 using SimplePhotoViewer.IO;
 
-namespace SimplePhotoViewer
+namespace SimplePhotoViewer.UI.Ninjection
 {
     public class BusinessModule : NinjectModule
     {

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Ninject;
+using SimplePhotoViewer.UI.Util;
 
 namespace SimplePhotoViewer.UI.ViewModels
 {

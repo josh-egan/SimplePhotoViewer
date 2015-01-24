@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using Caliburn.Micro;
 using Ninject;
 using SimplePhotoViewer.IO;
+using SimplePhotoViewer.UI.Util;
 
 namespace SimplePhotoViewer.UI.ViewModels
 {

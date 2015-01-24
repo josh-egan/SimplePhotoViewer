@@ -4,10 +4,10 @@ using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using Ninject;
-using SimplePhotoViewer.UI;
+using SimplePhotoViewer.UI.Ninjection;
 using SimplePhotoViewer.UI.ViewModels;
 
-namespace SimplePhotoViewer
+namespace SimplePhotoViewer.UI
 {
     public class AppBootstrapper : BootstrapperBase
     {

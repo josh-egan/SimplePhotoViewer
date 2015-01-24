@@ -3,7 +3,7 @@ using Ninject.Modules;
 using SimplePhotoViewer.UI;
 using SimplePhotoViewer.UI.ViewModels;
 
-namespace SimplePhotoViewer
+namespace SimplePhotoViewer.UI.Ninjection
 {
     public class UIModule : NinjectModule
     {

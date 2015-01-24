@@ -70,13 +70,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BusinessModule.cs" />
+    <Compile Include="UI\Ninjection\BusinessModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IO\FileDialogWrapper.cs" />
     <Compile Include="IO\FileTraverser.cs" />
     <Compile Include="IO\ICanSelectFile.cs" />
-    <Compile Include="UIModule.cs" />
-    <Compile Include="UI\BoolToVisibilityConverter.cs" />
+    <Compile Include="UI\Ninjection\UIModule.cs" />
+    <Compile Include="UI\Util\BoolToVisibilityConverter.cs" />
     <Compile Include="UI\CaliburnCustomizations.cs" />
     <Compile Include="UI\ViewModels\ImageViewModel.cs" />
     <Compile Include="UI\ViewModels\ShellViewModel.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="UI\WindowStateHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="UI\AppBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

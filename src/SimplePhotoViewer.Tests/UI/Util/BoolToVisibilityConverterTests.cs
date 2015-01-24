@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using NUnit.Framework;
-using SimplePhotoViewer.UI;
+using SimplePhotoViewer.UI.Util;
 
-namespace SimplePhotoViewer.Tests.UI
+namespace SimplePhotoViewer.Tests.UI.Util
 {
     [TestFixture]
     public class BoolToVisibilityConverterTests
