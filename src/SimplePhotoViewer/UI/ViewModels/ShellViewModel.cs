@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Input;
 using Caliburn.Micro;
 using Ninject;
 
@@ -100,6 +101,11 @@ namespace SimplePhotoViewer.UI.ViewModels
                 MaximizeVisibility = Visibility.Visible;
                 NormalVisibility = Visibility.Collapsed;
             }
+        }
+
+        public void HandleKeyDown(KeyEventArgs eventArgs)
+        {
+            ImageViewModel.HandleKeyDown(eventArgs);
         }
 
         public void ReSelectFile()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
 using Ninject;
@@ -10,7 +11,9 @@ namespace SimplePhotoViewer.UI.ViewModels
     public interface IImageViewModel : INotifyPropertyChangedEx
     {
         event EventHandler<bool> IsImageSelectedChanged;
+
         void ReSelectFile();
+        void HandleKeyDown(KeyEventArgs eventArgs);
     }
 
     public class ImageViewModel : PropertyChangedBase, IImageViewModel
@@ -96,6 +99,15 @@ namespace SimplePhotoViewer.UI.ViewModels
 
         public event EventHandler<bool> IsImageSelectedChanged = delegate { };
 
+        public void HandleKeyDown(KeyEventArgs eventArgs)
+        {
+            var key = eventArgs.Key;
+            if (key == Key.Down || key == Key.Right)
+                Next();
+            else if (key == Key.Up || key == Key.Left)
+                Previous();
+        }
+
         public void ReSelectFile()
         {
             UpdateCurrentImage(fileTraverser.SelectFile(Constants.SupportedImageExtensions));
@@ -108,12 +120,14 @@ namespace SimplePhotoViewer.UI.ViewModels
 
         public void Next()
         {
-            UpdateCurrentImage(fileTraverser.GetNextFile());
+            if (IsImageSelected)
+                UpdateCurrentImage(fileTraverser.GetNextFile());
         }
 
         public void Previous()
         {
-            UpdateCurrentImage(fileTraverser.GetPreviousFile());
+            if (IsImageSelected)
+                UpdateCurrentImage(fileTraverser.GetPreviousFile());
         }
 
         private void UpdateCurrentImage(string filePath)

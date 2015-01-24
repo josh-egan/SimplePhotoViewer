@@ -75,7 +75,7 @@ namespace SimplePhotoViewer.IO
             directoryFiles = Directory.GetFiles(parentDir).Where(f =>
             {
                 var ext = Path.GetExtension(f);
-                return ext != null && Constants.SupportedImageExtensions.Any(supported => ext.Equals("." + supported));
+                return ext != null && Constants.SupportedImageExtensions.Any(supported => ext.ToLower().Equals("." + supported.ToLower()));
             }).ToArray();
         }
 

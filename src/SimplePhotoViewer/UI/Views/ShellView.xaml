@@ -11,8 +11,9 @@
         BorderThickness="0"
         AllowsTransparency="True"
         Background="Black"
-        cal:Message.Attach="[Event StateChanged] = [Action UpdateWindowControlVisibilities];
-                            [Event Loaded] = [Action UpdateWindowControlVisibilities]">
+                cal:Message.Attach="[Event StateChanged] = [Action UpdateWindowControlVisibilities];
+                            [Event Loaded] = [Action UpdateWindowControlVisibilities];
+                            [Event KeyDown] = [Action HandleKeyDown($eventArgs)]">
     <Grid>
         <Grid Margin="10">
             <Grid.RowDefinitions>
