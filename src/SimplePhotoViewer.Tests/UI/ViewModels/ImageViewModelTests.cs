@@ -72,6 +72,8 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
         [Test]
         public void _05_next_calls_file_traverser()
         {
+            imageViewModel.SelectFile();
+
             imageViewModel.Next();
 
             fileTraverser.AssertWasCalled(f => f.GetNextFile());
@@ -100,6 +102,8 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
         [Test]
         public void _08_previous_calls_file_traverser()
         {
+            imageViewModel.SelectFile();
+
             imageViewModel.Previous();
 
             fileTraverser.AssertWasCalled(f => f.GetPreviousFile());
