@@ -103,9 +103,15 @@ namespace SimplePhotoViewer.UI.ViewModels
         {
             var key = eventArgs.Key;
             if (key == Key.Down || key == Key.Right)
+            {
                 Next();
+                eventArgs.Handled = true;
+            }
             else if (key == Key.Up || key == Key.Left)
+            {
                 Previous();
+                eventArgs.Handled = true;
+            }
         }
 
         public void SelectFile()
