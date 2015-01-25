@@ -71,6 +71,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Controls\CustomWindow.cs" />
+    <Compile Include="UI\Controls\TemplateChangedEventHandler.cs" />
     <Compile Include="UI\Ninjection\BusinessModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IO\FileDialogWrapper.cs" />

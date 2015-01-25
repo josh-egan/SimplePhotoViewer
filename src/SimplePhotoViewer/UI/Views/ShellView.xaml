@@ -3,18 +3,11 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:cal="http://www.caliburnproject.org"
                        xmlns:views="clr-namespace:SimplePhotoViewer.UI.Views"  
-                       xmlns:controls="clr-namespace:SimplePhotoViewer.UI.Controls"   
-                       Style="{DynamicResource TestOutWindow}"
-                       WindowStartupLocation="CenterScreen"
-                       cal:Message.Attach=" [Event Loaded] = [Action WindowLoaded($source)];
-                       [Event StateChanged] = [Action UpdateWindowControlVisibilities];
-                       [Event KeyDown] = [Action HandleKeyDown($eventArgs)]">
-   
+                       xmlns:controls="clr-namespace:SimplePhotoViewer.UI.Controls" 
+                       WindowStartupLocation="CenterScreen"  
+                       Style="{DynamicResource StandardShell}"
+                       cal:Message.Attach="[Event KeyDown] = [Action HandleKeyDown($eventArgs)]">   
     <Grid>
-        <Button Name="SelectFile" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0">
-            <TextBlock Text="Select Image" Style="{StaticResource ButtonText}"/>
-        </Button>
-
         <views:ImageView cal:View.Model="{Binding ImageViewModel}"/>
     </Grid>
 </controls:CustomWindow>

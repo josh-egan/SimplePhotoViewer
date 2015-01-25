@@ -16,86 +16,94 @@ namespace SimplePhotoViewer.UI.Controls
     [TemplatePartAttribute(Name = "Exit", Type = typeof(Button))]
     public class CustomWindow : Window
     {
-        private const string PartMinimizeButtonName = "Minimize";
-        private const string PartNormalButtonName = "Normal";
-        private const string PartMaximizeButtonName = "Maximize";
-        private const string PartExitButtonName = "Exit";
-
-        private Button minimize;
-        private Button normal;
-        private Button maximize;
-        private Button exit;
+        //public const string PartMinimizeButtonName = "Minimize";
+        //public const string PartNormalButtonName = "Normal";
+        //public const string PartMaximizeButtonName = "Maximize";
+        //public const string PartExitButtonName = "Exit";
+        
+        //private Button minimize;
+        //private Button normal;
+        //private Button maximize;
+        //private Button exit;
 
         public CustomWindow()
         {
             MouseLeftButtonDown += (s, a) => DragMove();
-            StateChanged += (s, a) => UpdateWindowControlVisibilities();
         }
 
-        public override void OnApplyTemplate()
+        public event TemplateChangedEventHandler TemplateChanged = delegate { };
+
+        protected override void OnTemplateChanged(ControlTemplate oldTemplate, ControlTemplate newTemplate)
         {
-            base.OnApplyTemplate();
+            base.OnTemplateChanged(oldTemplate, newTemplate);
 
-            if (minimize != null) minimize.Click -= Minimize;
-            minimize = GetRequiredTemplateChild(PartMinimizeButtonName) as Button;
-            minimize.Click += Minimize;
-
-            if (normal != null) normal.Click -= Normal;
-            normal = GetRequiredTemplateChild(PartNormalButtonName) as Button;
-            normal.Click += Normal;
-
-            if (maximize != null) maximize.Click -= Maximize;
-            maximize = GetRequiredTemplateChild(PartMaximizeButtonName) as Button;
-            maximize.Click += Maximize;
-
-            if (exit != null) exit.Click -= Exit;
-            exit = GetRequiredTemplateChild(PartExitButtonName) as Button;
-            exit.Click += Exit;
-
-            UpdateWindowControlVisibilities();
-        }       
-
-        public void Minimize(object sender, EventArgs args)
-        {
-            WindowState = WindowState.Minimized;
+            TemplateChanged(this, new TemplateChangedEventArgs(oldTemplate, newTemplate));
         }
 
-        public void Normal(object sender, EventArgs args)
-        {
-            WindowState = WindowState.Normal;
-        }
+        //public override void OnApplyTemplate()
+        //{
+        //    base.OnApplyTemplate();
 
-        public void Maximize(object sender, EventArgs args)
-        {
-            WindowState = WindowState.Maximized;
-        }
+        //    if (minimize != null) minimize.Click -= Minimize;
+        //    minimize = GetRequiredTemplateChild(PartMinimizeButtonName) as Button;
+        //    minimize.Click += Minimize;
 
-        public void Exit(object sender, EventArgs args)
-        {
-            Close();
-        }
+        //    if (normal != null) normal.Click -= Normal;
+        //    normal = GetRequiredTemplateChild(PartNormalButtonName) as Button;
+        //    normal.Click += Normal;
 
-        public void UpdateWindowControlVisibilities()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                maximize.Visibility = Visibility.Collapsed;
-                normal.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                maximize.Visibility = Visibility.Visible;
-                normal.Visibility = Visibility.Collapsed;
-            }
-        }
+        //    if (maximize != null) maximize.Click -= Maximize;
+        //    maximize = GetRequiredTemplateChild(PartMaximizeButtonName) as Button;
+        //    maximize.Click += Maximize;
 
-        private object GetRequiredTemplateChild(string name)
-        {
-            var templateChild = GetTemplateChild(name);
-            if (templateChild == null)
-                throw new ArgumentException("The " + name + " template part is required!");
-            return templateChild;
-        }
+        //    if (exit != null) exit.Click -= Exit;
+        //    exit = GetRequiredTemplateChild(PartExitButtonName) as Button;
+        //    exit.Click += Exit;
+
+        //    UpdateWindowControlVisibilities();
+        //}       
+
+        //public void Minimize(object sender, EventArgs args)
+        //{
+        //    WindowState = WindowState.Minimized;
+        //}
+
+        //public void Normal(object sender, EventArgs args)
+        //{
+        //    WindowState = WindowState.Normal;
+        //}
+
+        //public void Maximize(object sender, EventArgs args)
+        //{
+        //    WindowState = WindowState.Maximized;
+        //}
+
+        //public void Exit(object sender, EventArgs args)
+        //{
+        //    Close();
+        //}
+
+        //public void UpdateWindowControlVisibilities()
+        //{
+        //    if (WindowState == WindowState.Maximized)
+        //    {
+        //        maximize.Visibility = Visibility.Collapsed;
+        //        normal.Visibility = Visibility.Visible;
+        //    }
+        //    else
+        //    {
+        //        maximize.Visibility = Visibility.Visible;
+        //        normal.Visibility = Visibility.Collapsed;
+        //    }
+        //}
+
+        //private object GetRequiredTemplateChild(string name)
+        //{
+        //    var templateChild = GetTemplateChild(name);
+        //    if (templateChild == null)
+        //        throw new ArgumentException("The " + name + " template part is required!");
+        //    return templateChild;
+        //}
 
     }
 }

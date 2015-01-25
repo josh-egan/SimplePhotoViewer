@@ -25,6 +25,15 @@ namespace SimplePhotoViewer.UI
             };
         }
 
+        public static void BindNamedElements(IEnumerable<FrameworkElement> elements, Type viewModelType)
+        {
+            var collection = elements as ICollection<FrameworkElement> ?? elements.ToArray();
+
+            ViewModelBinder.BindActions(collection, viewModelType);
+            ViewModelBinder.BindProperties(collection, viewModelType);
+            CaliburnCustomizations.BindProperties(collection, viewModelType);
+        }
+
         private static void BindPropertiesOfNamedElements(object viewModel, DependencyObject view)
         {
             var frameworkElement = View.GetFirstNonGeneratedView(view) as FrameworkElement;
@@ -33,6 +42,11 @@ namespace SimplePhotoViewer.UI
             var viewModelType = viewModel.GetType();
             var namedElements = BindingScope.GetNamedElements(frameworkElement);
 
+            BindProperties(namedElements, viewModelType);
+        }
+
+        private static void BindProperties(IEnumerable<FrameworkElement> namedElements, Type viewModelType)
+        {
             const BindingFlags flags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
             var properties = viewModelType.GetProperties(flags);
 

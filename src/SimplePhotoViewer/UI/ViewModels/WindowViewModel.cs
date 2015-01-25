@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using SimplePhotoViewer.UI.Controls;
 
 namespace SimplePhotoViewer.UI.ViewModels
 {
@@ -12,15 +13,9 @@ namespace SimplePhotoViewer.UI.ViewModels
 
     public class WindowViewModel : Screen, IWindowViewModel
     {
-        private Window window;
+        private CustomWindow window;
         private Visibility maximizeVisibility;
         private Visibility normalVisibility;
-
-        public void WindowLoaded(Window source)
-        {
-            window = source;
-            UpdateWindowControlVisibilities();
-        }
 
         public Visibility MaximizeVisibility
         {
@@ -74,6 +69,26 @@ namespace SimplePhotoViewer.UI.ViewModels
                 MaximizeVisibility = Visibility.Visible;
                 NormalVisibility = Visibility.Collapsed;
             }
+        }
+        
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+
+            window = view as CustomWindow;
+            window.TemplateChanged += (s, e) => BindNamedElements();
+            window.StateChanged += (s, e) => UpdateWindowControlVisibilities();
+            
+            BindNamedElements();
+            UpdateWindowControlVisibilities();
+        }
+
+        private void BindNamedElements()
+        {
+            var templateElements = BindingScope.GetNamedElements(window);               
+            var viewModelType = GetType();
+
+            CaliburnCustomizations.BindNamedElements(templateElements, viewModelType);
         }
 
     }
