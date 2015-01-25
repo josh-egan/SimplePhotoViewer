@@ -13,7 +13,7 @@ namespace SimplePhotoViewer.UI.ViewModels
     {
         event EventHandler<bool> IsImageSelectedChanged;
 
-        void ReSelectFile();
+        void SelectFile();
         void HandleKeyDown(KeyEventArgs eventArgs);
     }
 
@@ -106,11 +106,6 @@ namespace SimplePhotoViewer.UI.ViewModels
                 Next();
             else if (key == Key.Up || key == Key.Left)
                 Previous();
-        }
-
-        public void ReSelectFile()
-        {
-            UpdateCurrentImage(fileTraverser.SelectFile(Constants.SupportedImageExtensions));
         }
 
         public void SelectFile()

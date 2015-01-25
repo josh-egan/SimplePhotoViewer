@@ -132,7 +132,7 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
         [Test]
         public void _11_reselect_file_calls_file_traverser()
         {
-            imageViewModel.ReSelectFile();
+            imageViewModel.SelectFile();
 
             fileTraverser.AssertWasCalled(f => f.SelectFile(Constants.SupportedImageExtensions));
         }
@@ -143,7 +143,7 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
             imageViewModel.SelectFile();
             var img = imageViewModel.CurrentImage;
 
-            imageViewModel.ReSelectFile();
+            imageViewModel.SelectFile();
 
             Assert.AreNotEqual(img, imageViewModel.CurrentImage);
         }
@@ -154,7 +154,7 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
             fileTraverser.BackToRecord();
             fileTraverser.Replay();
 
-            Assert.DoesNotThrow(() => imageViewModel.ReSelectFile());
+            Assert.DoesNotThrow(() => imageViewModel.SelectFile());
         }
 
         [Test]
@@ -185,7 +185,7 @@ namespace SimplePhotoViewer.Tests.UI.ViewModels
             imageViewModel.SelectFile();
             imageViewModel.Next();
             imageViewModel.Next();
-            imageViewModel.ReSelectFile();
+            imageViewModel.SelectFile();
             imageViewModel.Previous();
 
             Assert.AreEqual(1, c);

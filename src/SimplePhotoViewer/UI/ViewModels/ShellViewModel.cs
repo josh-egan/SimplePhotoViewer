@@ -10,32 +10,27 @@ namespace SimplePhotoViewer.UI.ViewModels
     public interface IShellViewModel : IScreen {}
 
     [Export(typeof (IShellViewModel))]
-    public sealed class ShellViewModel : Screen, IShellViewModel
+    public sealed class ShellViewModel : WindowViewModel, IShellViewModel
     {
-        private readonly IWindowStateHelper windowStateHelper;
         private IImageViewModel imageViewModel;
+        private Visibility selectFileVisibility;
 
-        private Visibility maximizeVisibility;
-        private Visibility reSelectFileVisibility;
-        private Visibility restoreDownVisibility;
-
-        public ShellViewModel(IWindowStateHelper windowStateHelper, IImageViewModel imageViewModel)
+        public ShellViewModel(IImageViewModel imageViewModel)
         {
-            this.windowStateHelper = windowStateHelper;
             ImageViewModel = imageViewModel;
             ImageViewModel.IsImageSelectedChanged +=
-                (s, b) => ReSelectFileVisibility = BoolToVisibilityConverter.ToVisibleOrHidden(b);
+                (s, b) => SelectFileVisibility = BoolToVisibilityConverter.ToVisibleOrHidden(b);
 
-            ReSelectFileVisibility = Visibility.Hidden;
+            SelectFileVisibility = Visibility.Hidden;
         }
 
-        public Visibility ReSelectFileVisibility
+        public Visibility SelectFileVisibility
         {
-            get { return reSelectFileVisibility; }
+            get { return selectFileVisibility; }
             set
             {
-                reSelectFileVisibility = value;
-                NotifyOfPropertyChange(() => ReSelectFileVisibility);
+                selectFileVisibility = value;
+                NotifyOfPropertyChange(() => SelectFileVisibility);
             }
         }
 
@@ -49,68 +44,14 @@ namespace SimplePhotoViewer.UI.ViewModels
             }
         }
 
-        public Visibility MaximizeVisibility
-        {
-            get { return maximizeVisibility; }
-            set
-            {
-                maximizeVisibility = value;
-                NotifyOfPropertyChange(() => MaximizeVisibility);
-            }
-        }
-
-        public Visibility NormalVisibility
-        {
-            get { return restoreDownVisibility; }
-            set
-            {
-                restoreDownVisibility = value;
-                NotifyOfPropertyChange(() => NormalVisibility);
-            }
-        }
-
-        public void Minimize()
-        {
-            windowStateHelper.WindowState = WindowState.Minimized;
-        }
-
-        public void Normal()
-        {
-            windowStateHelper.WindowState = WindowState.Normal;
-        }
-
-        public void Maximize()
-        {
-            windowStateHelper.WindowState = WindowState.Maximized;
-        }
-
-        public void Exit()
-        {
-            TryClose();
-        }
-
-        public void UpdateWindowControlVisibilities()
-        {
-            if (windowStateHelper.WindowState == WindowState.Maximized)
-            {
-                MaximizeVisibility = Visibility.Collapsed;
-                NormalVisibility = Visibility.Visible;
-            }
-            else
-            {
-                MaximizeVisibility = Visibility.Visible;
-                NormalVisibility = Visibility.Collapsed;
-            }
-        }
-
         public void HandleKeyDown(KeyEventArgs eventArgs)
         {
             ImageViewModel.HandleKeyDown(eventArgs);
         }
 
-        public void ReSelectFile()
+        public void SelectFile()
         {
-            ImageViewModel.ReSelectFile();
+            ImageViewModel.SelectFile();
         }
     }
 }

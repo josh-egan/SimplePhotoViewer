@@ -5,7 +5,6 @@
         public ShellView()
         {
             InitializeComponent();
-            MouseLeftButtonDown += (s, a) => DragMove();
         }
     }
 }

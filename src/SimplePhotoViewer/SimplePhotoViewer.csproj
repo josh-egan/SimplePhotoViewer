@@ -70,6 +70,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UI\Controls\CustomWindow.cs" />
     <Compile Include="UI\Ninjection\BusinessModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IO\FileDialogWrapper.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="UI\CaliburnCustomizations.cs" />
     <Compile Include="UI\ViewModels\ImageViewModel.cs" />
     <Compile Include="UI\ViewModels\ShellViewModel.cs" />
+    <Compile Include="UI\ViewModels\WindowViewModel.cs" />
     <Compile Include="UI\Views\ImageView.xaml.cs">
       <DependentUpon>ImageView.xaml</DependentUpon>
     </Compile>
