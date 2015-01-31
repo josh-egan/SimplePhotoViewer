@@ -89,7 +89,6 @@
     <Compile Include="UI\Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\WindowStateHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UI\AppBootstrapper.cs" />

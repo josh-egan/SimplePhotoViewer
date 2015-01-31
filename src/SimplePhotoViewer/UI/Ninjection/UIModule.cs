@@ -10,7 +10,6 @@ namespace SimplePhotoViewer.UI.Ninjection
         public override void Load()
         {
             Bind<IWindowManager>().To<WindowManager>();
-            Bind<IWindowStateHelper>().To<WindowStateHelper>();
             Bind<IShellViewModel>().To<ShellViewModel>();
             Bind<IImageViewModel>().To<ImageViewModel>();
         }
