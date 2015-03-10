@@ -1,8 +1,8 @@
 language: csharp
 solution: SimplePhotoViewer.sln
 install:
-	- nuget restore SimplePhotoViewer.sln
-	- nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+    - nuget restore SimplePhotoViewer.sln
+    - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-	- xbuild /p:Configuration=Release SimplePhotoViewer.sln
-	- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./bin/Release/SimplePhotoViewer.Tests.dll
+    - xbuild /p:Configuration=Release SimplePhotoViewer.sln
+    - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./bin/Release/SimplePhotoViewer.Tests.dll
